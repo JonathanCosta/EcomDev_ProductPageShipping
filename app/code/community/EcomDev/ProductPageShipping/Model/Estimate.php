@@ -102,11 +102,13 @@ class EcomDev_ProductPageShipping_Model_Estimate
 	        $addToCartInfo = (array) $this->_product->getAddToCartInfo();
 	        //Find simple product
 			$simple_product = Mage::getModel('catalog/product_type_configurable')->getProductByAttributes($addToCartInfo['super_attribute'],$this->_product);
-			
-			//Replace by simple product
-			$this->_product = Mage::getModel('catalog/product')->load($simple_product->getId());
 
-			//Return the simple product
+		//Replace by simple product
+		if($simple_product) :
+                	$this->_product = Mage::getModel('catalog/product')->load($simple_product->getId());
+		endif;
+
+		//Return the simple product
 			return $this->_product;
 		}
         return $this->_product;
