@@ -106,6 +106,7 @@ class EcomDev_ProductPageShipping_Model_Estimate
 		//Replace by simple product
 		if($simple_product) :
                 	$this->_product = Mage::getModel('catalog/product')->load($simple_product->getId());
+			$this->_product->setAddToCartInfo($addToCartInfo);
 		endif;
 
 		//Return the simple product
